@@ -23,20 +23,20 @@ module TubekitRb
 
     def convert(text, voice)
       # Step 1 Login
-      action_login = TubekitRb::Actions::Login.new(self)
-      action_login.call
+      action = TubekitRb::Actions::Login.new(self)
+      action.call
 
       # Step 2 Add new Audio
-      action_login = TubekitRb::Actions::Create.new(self)
-      action_login.call
+      action = TubekitRb::Actions::Create.new(self)
+      action.call
 
       # Step 3 Convert
-      action_login = TubekitRb::Actions::Convert.new(self)
-      action_login.call(text, voice)
+      action = TubekitRb::Actions::Convert.new(self)
+      action.call(text, voice)
 
       # Step 3 Get url
-      action_login = TubekitRb::Actions::Result.new(self)
-      action_login.call
+      action = TubekitRb::Actions::Result.new(self)
+      action.call
 
       Capybara.current_session.driver.quit
     rescue Exception => e
